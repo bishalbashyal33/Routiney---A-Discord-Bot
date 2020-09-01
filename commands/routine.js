@@ -11,7 +11,7 @@ module.exports = {
 	},
 	execute2(message,args){
 	//	let today = new Date();
-         message.channel.send(`Database Routine Updates are Only available to CRs ${args[0]} ${args[1]} ${args[2]}`);
+         message.channel.send(`Database Routine Updates are Only available to CRs ${args[0]} ${args[1]} ${args[2]} ${args[3]} ${args[4]} `);
 		 // eslint-disable-next-line no-mixed-spaces-and-tabs
 		 // eslint-disable-next-line no-mixed-spaces-and-tabs
 		 
