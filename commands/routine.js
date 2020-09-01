@@ -10,12 +10,13 @@ module.exports = {
 		
 	},
 	execute2(message,args){
-	//	let today = new Date();
-         message.channel.send(`Database Routine Updates are Only available to CRs ${args[0]} ${args[1]} ${args[2]} ${args[3]} ${args[4]} `);
+		let today = new Date();
+
+         message.channel.send(`Database Routine Updates are Only available to CRs `);
 		 // eslint-disable-next-line no-mixed-spaces-and-tabs
 		 // eslint-disable-next-line no-mixed-spaces-and-tabs
-		 
-		// getDayVar(today.getDay()).map(getSubs)[3] = "Class Cancelled";
+		if(args[2] === 'cancel' && args[3]==='1')
+		getDayVar(today.getDay()).map(getSubs)[3]="Class Cancelled";
 	},
 };
 
