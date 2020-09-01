@@ -31,9 +31,13 @@ client.on('message', message => {
     const args = message.content.slice(config.prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
 
-
+    if (message.content.startsWith('!updateroutine')) {
+        
+        client.commands.get('routine').execute2(message);
+      
+    }
+    
     if (!client.commands.has(command)) return;
-
     try {
         client.commands.get(command).execute(message, args,message.author.username);
     } catch (error) {

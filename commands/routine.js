@@ -8,7 +8,13 @@ module.exports = {
 			routiniser(message,today);
 		
 	},
+	execute2(message){
+	
+         message.channel.send('Database Routine Updates are Only available to CRs');
+
+	},
 };
+
 
 function timestamps(param){
 	const timeInterval = ["10:15 - 11:05","11:05 - 11:55","11:55 - 12:45","12:45 - 01:35", "01:35 - 02:25","02:25 - 03:15","03:15 - 04:05","04:05 - 04:55"]
@@ -25,7 +31,7 @@ function getDayName(params) {
 
 
 function getSubs(param){
-	const subsName = ["Numerical Methods","DS And Algo","Instrumentation","Applied Maths","Electric Machines","Discrete Struc","Microprocessor","Break","No More Classes"];
+	let subsName = ["Numerical Methods","DS And Algo","Instrumentation","Applied Maths","Electric Machines","Discrete Struc","Microprocessor","Break","No More Classes"];
 	return subsName[param];
 
 }
