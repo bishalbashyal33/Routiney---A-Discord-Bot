@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 module.exports = {
 	name: 'routine',
 	description: 'Routine!',
@@ -8,10 +9,13 @@ module.exports = {
 			routiniser(message,today);
 		
 	},
-	execute2(message){
-	
-         message.channel.send('Database Routine Updates are Only available to CRs');
-
+	execute2(message,args){
+	//	let today = new Date();
+         message.channel.send(`Database Routine Updates are Only available to CRs ${args[0]}`);
+		 // eslint-disable-next-line no-mixed-spaces-and-tabs
+		 // eslint-disable-next-line no-mixed-spaces-and-tabs
+		 
+		// getDayVar(today.getDay()).map(getSubs)[3] = "Class Cancelled";
 	},
 };
 
@@ -24,7 +28,7 @@ function timestamps(param){
 
 function getDayName(params) {
     const dayName = ["Sunday","Monday","Tuesday","Wednesay","Thursday","Friday"];
-
+    
     return dayName[params];
 }
 
@@ -38,7 +42,7 @@ function getSubs(param){
 
 function routiniser(message,today){
 	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${getDayVar(today.getDay()).map(getSubs)[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${getDayVar(today.getDay()).map(getSubs)[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${getDayVar(today.getDay()).map(getSubs)[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${getDayVar(today.getDay()).map(getSubs)[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${getDayVar(today.getDay()).map(getSubs)[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${getDayVar(today.getDay()).map(getSubs)[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${getDayVar(today.getDay()).map(getSubs)[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${getDayVar(today.getDay()).map(getSubs)[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
-		~Routine Under Maintenance~
+		~Routine Under Maintenance~ 
 		 \`\`\``);
 	
 }
@@ -51,9 +55,7 @@ let wed = [4,4,2,2,7,7,7,7];
 let thu = [4,4,5,7,1,7,7,7];
 let fri = [7,6,6,6,3,7,7,7];
 let sir= [sun,mon,tue,wed,thu,fri];
-
 return sir[param];
-
 }
 
 function getLecVar(param){
