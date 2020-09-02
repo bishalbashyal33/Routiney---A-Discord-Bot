@@ -19,14 +19,15 @@ module.exports = {
          message.channel.send(`Database Routine Updates are Only available to CRs `);
 		 if(args[0]==='cancel' || args[0] === 'not cancel')
 		 {
-		 jsonReader("./routine.json", (err, customer) => {
+
+		 jsonReader("./routine.json", (err,data ) => {
 			if (err) {
 			  console.log("Error reading file:", err);
 			  return;
 			}
 			// increase customer order count by 1
 			data.state = args[0];
-			fs.writeFile("./customer.json", JSON.stringify(customer), err => {
+			fs.writeFile("./routine.json", JSON.stringify(data), err => {
 			  if (err) console.log("Error writing file:", err);
 			});
 		
