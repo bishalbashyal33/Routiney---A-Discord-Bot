@@ -28,7 +28,7 @@ module.exports = {
 			}
 			// increase customer order count by 1
 			data.state = args[0];
-			fs.writeFile("./routine.json", JSON.stringify(data), err => {
+			fs.writeFileSync("./routine.json", JSON.stringify(data), err => {
 			  if (err) console.log("Error writing file:", err);
 			});
 		
