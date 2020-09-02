@@ -68,6 +68,7 @@ function jsonReader(filePath, cb) {
 	  console.log(err);
 	  return;
 	}
+	console.log('Reached Inside JSonreader');
 	console.log(data.state); // => "Infinity Loop Drive"
   });
 
