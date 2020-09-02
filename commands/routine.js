@@ -1,4 +1,6 @@
 //const { stderr } = require('process');
+
+
 const fs = require('fs');
 let jsonString = fs.readFileSync('./routine.json','utf-8');
 let data = JSON.parse(jsonString);
@@ -10,7 +12,7 @@ module.exports = {
 	execute(message) {
 		let today = new Date();
 		console.log(today.getDay());
-		
+		    
 			routiniser(message,today);
 		
 	},
