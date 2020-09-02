@@ -31,7 +31,7 @@ module.exports = {
 			});
 		
 		  });}
-
+          
 		  routiniser(message,today,args);
 
 
@@ -103,6 +103,7 @@ function getSubs(param){
 }
 
 function routiniser(message,today,args=['x','x','x','x']){
+	console.log(args);
 	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[3])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[3])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[3])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[3])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[3])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[3])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[3])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[3])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
 		~Routine Under Maintenance~ 
 		 \`\`\``);
@@ -141,6 +142,8 @@ function dynamicRoutine(today,param){
 	let arr = [getDayVar(today.getDay()).map(getSubs)[0],getDayVar(today.getDay()).map(getSubs)[1],getDayVar(today.getDay()).map(getSubs)[2],getDayVar(today.getDay()).map(getSubs)[3],getDayVar(today.getDay()).map(getSubs)[4],getDayVar(today.getDay()).map(getSubs)[5],getDayVar(today.getDay()).map(getSubs)[6],getDayVar(today.getDay()).map(getSubs)[7]];
 	console.log(data.state);
 	if(data.state === 'not cancel' && param === 'x'){
+	
+	
 		console.log('No cancel loop 1 exe');
 		return arr;
 		
