@@ -17,7 +17,7 @@ module.exports = {
 	execute2(message,args){
 		let today = new Date();
          message.channel.send(`Database Routine Updates are Only available to CRs `);
-		 if(args[2]==='cancel' || args[2] === 'not cancel')
+		 if(args[0]==='cancel' || args[0] === 'not cancel')
 		 {
 		 jsonReader("./routine.json", (err, customer) => {
 			if (err) {
@@ -25,7 +25,7 @@ module.exports = {
 			  return;
 			}
 			// increase customer order count by 1
-			data.state = args[2];
+			data.state = args[0];
 			fs.writeFile("./customer.json", JSON.stringify(customer), err => {
 			  if (err) console.log("Error writing file:", err);
 			});
@@ -106,7 +106,7 @@ function routiniser(message,today,args=['x','x','x','x']){
 	console.log(args);
 	console.log(args[0],args[1],args[2],args[3]);
 	
-	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[3])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[3])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[3])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[3])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[3])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[3])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[3])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[3])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
+	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[1])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[1])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[1])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[1])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[1])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[1])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[1])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[1])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
 		~Routine Under Maintenance~ 
 		 \`\`\``);
 	
