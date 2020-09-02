@@ -21,16 +21,21 @@ module.exports = {
 		 if(args[0]==='cancel' || args[0] === 'not cancel')
 		 {
 
-		 jsonReader("./routine.json", (err,data ) => {
+		 jsonReader("./routine.json", (err,sata ) => {
 			if (err) {
 			  console.log("Error reading file:", err);
 			  return;
 			}
 			// increase customer order count by 1
-			data.state = args[0];
-			fs.writeFileSync("./routine.json", JSON.stringify(data), err => {
+			sata.state = args[0];
+			fs.writeFileSync("./routine.json", JSON.stringify(sata), err => {
 			  if (err) console.log("Error writing file:", err);
 			});
+
+			let jsonString = fs.readFileSync('./routine.json','utf-8');
+			let data = JSON.parse(jsonString);
+			console.log(`Checking state: ${sata.state} , ${data.state}`)
+
 		
 		  });}
           
