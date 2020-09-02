@@ -16,7 +16,8 @@ module.exports = {
 	},
 	execute2(message,args){
 		let today = new Date();
-         message.channel.send(`Database Routine Updates are Only available to CRs `);
+		 message.channel.send(`Database Routine Updates are Only available to CRs `);
+		 console.log(`executing execute2 ${args[0]}`);
 		 if(args[0]==='cancel' || args[0] === 'not cancel')
 		 {
 
