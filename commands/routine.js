@@ -1,3 +1,8 @@
+//const { stderr } = require('process');
+const fs = require('fs');
+let jsonString = fs.readFileSync('./routine.json','utf-8');
+let data = JSON.parse(jsonString);
+
 /* eslint-disable no-mixed-spaces-and-tabs */
 module.exports = {
 	name: 'routine',
@@ -11,14 +16,99 @@ module.exports = {
 	},
 	execute2(message,args){
 		let today = new Date();
-
+        
          message.channel.send(`Database Routine Updates are Only available to CRs `);
-		 // eslint-disable-next-line no-mixed-spaces-and-tabs
-		 // eslint-disable-next-line no-mixed-spaces-and-tabs
-		if(args[2] === 'cancel' && args[3]==='1')
-		getDayVar(today.getDay()).map(getSubs)[3]="Class Cancelled";
+		 if(args[2]==='cancel' || args[2] === 'not cancel')
+		 {
+		 jsonReader("./routine.json", (err, customer) => {
+			if (err) {
+			  console.log("Error reading file:", err);
+			  return;
+			}
+			// increase customer order count by 1
+			data.state = args[2];
+			fs.writeFile("./customer.json", JSON.stringify(customer), err => {
+			  if (err) console.log("Error writing file:", err);
+			});
+		
+		  });}
+
+		  routiniser(message,today,args);
+
+
+
+
+
+
 	},
+		
 };
+
+
+
+
+
+
+function jsonReader(filePath, cb) {
+	fs.readFile(filePath, (err, fileData) => {
+	  if (err) {
+		return cb && cb(err);
+	  }
+	  try {
+		const object = JSON.parse(fileData);
+		return cb && cb(null, object);
+	  } catch (err) {
+		return cb && cb(err);
+	  }
+	});
+  }
+  jsonReader("./routine.json", (err, data) => {
+	if (err) {
+	  console.log(err);
+	  return;
+	}
+	console.log(data.state); // => "Infinity Loop Drive"
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function timestamps(param){
@@ -37,12 +127,14 @@ function getDayName(params) {
 
 function getSubs(param){
 	let subsName = ["Numerical Methods","DS And Algo","Instrumentation","Applied Maths","Electric Machines","Discrete Struc","Microprocessor","Break","No More Classes"];
+	
+	
 	return subsName[param];
 
 }
 
-function routiniser(message,today){
-	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${getDayVar(today.getDay()).map(getSubs)[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${getDayVar(today.getDay()).map(getSubs)[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${getDayVar(today.getDay()).map(getSubs)[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${getDayVar(today.getDay()).map(getSubs)[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${getDayVar(today.getDay()).map(getSubs)[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${getDayVar(today.getDay()).map(getSubs)[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${getDayVar(today.getDay()).map(getSubs)[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${getDayVar(today.getDay()).map(getSubs)[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
+function routiniser(message,today,args){
+	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[3])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[3])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[3])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[3])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[3])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[3])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[3])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[3])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
 		~Routine Under Maintenance~ 
 		 \`\`\``);
 	
@@ -73,4 +165,25 @@ return sir[param];
 function getLecName(params){
 	const lecName = ["SG","SKM","BDM","JRS","BS","MB","JG","SPP","KBT","XX","DSB","GG"]
 	return  lecName[params];
+}
+
+function dynamicRoutine(today,param){
+	
+	let arr = [getDayVar(today.getDay()).map(getSubs)[0],getDayVar(today.getDay()).map(getSubs)[1],getDayVar(today.getDay()).map(getSubs)[2],getDayVar(today.getDay()).map(getSubs)[3],getDayVar(today.getDay()).map(getSubs)[4],getDayVar(today.getDay()).map(getSubs)[5],getDayVar(today.getDay()).map(getSubs)[6],getDayVar(today.getDay()).map(getSubs)[7]];
+	if(data.state === 'not cancel')
+	{
+		return arr;
+	}
+
+	else if(data.state === 'cancel'){
+		arr.splice(param-1, 1, "Class Cancelled");
+		return arr;
+	}
+	
+	else
+	{
+	return arr;
+	}
+
+
 }
