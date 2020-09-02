@@ -33,7 +33,7 @@ client.on('message', message => {
 
     if (message.content.startsWith('!updateroutine')) {
         
-        client.commands.get('routine').execute2(message);
+        client.commands.get('routine').execute2(message,args);
       
     }
     
