@@ -116,7 +116,7 @@ function routiniser(message,today,args=['x','x','x','x']){
 	console.log(args);
 	console.log(args[0],args[1],args[2],args[3]);
 	
-	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[1])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[1])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[1])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[1])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[1])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[1])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[1])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[1])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
+	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[1],args[0])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[1],args[0])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[1],args[0])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[1],args[0])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[1],args[0])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[1],args[0])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[1],args[0])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[1],args[0])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
 		~Routine Under Maintenance~ 
 		 \`\`\``);
 	
@@ -149,25 +149,25 @@ function getLecName(params){
 	return  lecName[params];
 }
 
-function dynamicRoutine(today,param){
+function dynamicRoutine(today,param,agg){
 	
 	let arr = [getDayVar(today.getDay()).map(getSubs)[0],getDayVar(today.getDay()).map(getSubs)[1],getDayVar(today.getDay()).map(getSubs)[2],getDayVar(today.getDay()).map(getSubs)[3],getDayVar(today.getDay()).map(getSubs)[4],getDayVar(today.getDay()).map(getSubs)[5],getDayVar(today.getDay()).map(getSubs)[6],getDayVar(today.getDay()).map(getSubs)[7]];
 	console.log(data.state);
-	if(data.state === 'not cancel' && param === 'x'){
+	if(agg === 'not cancel' && param === 'x'){
 	
 		console.log(param);
 		console.log('No cancel loop 1 exe');
 		return arr;
 		
 	}
-	if(data.state === 'not cancel')
+	if(agg === 'not cancel')
 	{
 		console.log(param);
 		console.log('No cancel loop 2 exe');
 		return arr;
 	}
 
-	else if(data.state === 'cancel'){
+	else if(agg === 'cancel'){
 		console.log('cancel loop 3 exe');
 		arr.splice(param-1, 1, "Class Cancelled");
 		return arr;
