@@ -1,5 +1,6 @@
 //const { stderr } = require('process');
 
+const Discord = require("discord.js");
 const fs = require("fs");
 let jsonString = fs.readFileSync("./routine.json", "utf-8");
 let data = JSON.parse(jsonString);
@@ -32,7 +33,7 @@ module.exports = {
         routineData.save();
 
 
-       
+        const Embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
         .setURL('https://discord.js.org/')
@@ -56,7 +57,7 @@ module.exports = {
         .setImage('https://i.imgur.com/wSTFkRM.png')
         .setTimestamp()
         .setFooter('Sending Happy Routines ', './img/logo.png');
-         channel.send(Embed);
+         message.channel.send(Embed);
       
 
         //message.channel.send(displayMessege)
