@@ -1,6 +1,5 @@
 //const { stderr } = require('process');
 
-
 const fs = require('fs');
 let jsonString = fs.readFileSync('./routine.json','utf-8');
 let data = JSON.parse(jsonString);
@@ -22,7 +21,7 @@ module.exports = {
 		 console.log(`executing execute2 ${args[0]}`);
 		 if(args[0]==='cancel' || args[0] === 'not cancel')
 		 {
-
+         
 		 jsonReader("./routine.json", (err,sata ) => {
 			if (err) {
 			  console.log("Error reading file:", err);
@@ -53,10 +52,6 @@ module.exports = {
 };
 
 
-
-
-
-
 function jsonReader(filePath, cb) {
 	fs.readFile(filePath, (err, fileData) => {
 	  if (err) {
@@ -78,14 +73,6 @@ function jsonReader(filePath, cb) {
 	console.log('Reached Inside JSonreader');
 	console.log(data.state); // => "Infinity Loop Drive"
   });
-
-
-
-
-
-
-
-
 
 
 
