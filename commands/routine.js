@@ -31,7 +31,7 @@ module.exports = {
         let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
         routineData.markModified("at");
         routineData.save();
-        message.channel.send(` \`\`\`${displaymessage}\`\`\` `);
+        message.channel.send(` \`\`\`${displayMessage}\`\`\` `);
       });
     }
   },
@@ -61,7 +61,7 @@ function routiniser(message, today, args = ["x", "x", "x", "x"]) {
 
     let displayMessege = generateMessegeFromRoutine(routineToday);
 
-    message.channel.send(` \`\`\`${displaymessage}\`\`\` `);
+    message.channel.send(` \`\`\`${displayMessage}\`\`\` `);
     //for test
     return displayMessege;
   });
