@@ -33,7 +33,7 @@ module.exports = {
         routineData.save();
 
 
-    /  const Embed = new Discord.MessageEmbed()
+     const Embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
         .setURL('https://discord.js.org/')
