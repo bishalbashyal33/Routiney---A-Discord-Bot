@@ -4,6 +4,7 @@ const config = require("./config.json");
 const client = new Discord.Client();
 const mongoose = require("mongoose");
 
+
 client.mongoose = require("./utils/mongoose.js");
 client.commands = new Discord.Collection();
 const commandFiles = fs
@@ -29,7 +30,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content.startsWith("!updateroutine")) {
-    client.commands.get("routine").execute2(message, args);
+    client.commands.get("routine").execute2(message, args,);
   }
 
   if (!client.commands.has(command)) return;
