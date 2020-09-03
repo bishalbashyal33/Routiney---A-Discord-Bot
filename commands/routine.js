@@ -1,170 +1,125 @@
 //const { stderr } = require('process');
-
-const fs = require('fs');
-let jsonString = fs.readFileSync('./routine.json','utf-8');
+const Discord = require('discord.js');
+const fs = require("fs");
+let jsonString = fs.readFileSync("./routine.json", "utf-8");
 let data = JSON.parse(jsonString);
+const Routine = require("../models/routine");
 
 /* eslint-disable no-mixed-spaces-and-tabs */
 module.exports = {
-	name: 'routine',
-	description: 'Routine!',
-	execute(message) {
-		let today = new Date();
-		console.log(today.getDay());
-		    
-			routiniser(message,today);
-		
-	},
-	execute2(message,args){
-		let today = new Date();
-		 message.channel.send(`Database Routine Updates are Only available to CRs `);
-		 console.log(`executing execute2 ${args[0]}`);
-		 if(args[0]==='cancel' || args[0] === 'not cancel')
-		 {
+  name: "routine",
+  description: "Routine!",
+  execute(message) {
+    let today = new Date();
+    return routiniser(message, today);
+  },
+  execute2(message, args) {
+    let today = new Date().getDay();
+    let classIndexToCancel = args[1];
+    message.channel.send(`Database Routine Updates are Only available to CRs `);
+    if (args[0] === "cancel" || args[0] === "not cancel") {
+      Routine.find().then((routineDataArr) => {
+        let routineData = routineDataArr[0];
+
+        routineData.at[today].forEach((lecture, index) => {
+          if (index == classIndexToCancel) {
+            routineData.at[today][classIndexToCancel] = "Class Cancelled";
+          }
+        });
+
+        let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
+        routineData.markModified("at");
+        routineData.save();
+
+
+
+        const Embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
+        .setURL('https://discord.js.org/')
+        .setAuthor('Your Class Feed Today', './img/logo.png', 'https://discord.js.org')
+        .setDescription(`Hello ${message.author}, You have my service :receipt`)
+        .setThumbnail('./img/logo.png')
+        .addFields(
+          { name: 'First Period', value: `${displayMessege[0]}` },
+          { name: 'Second Period', value: `${displayMessege[1]}`},
+          { name: 'Second Period', value: `${displayMessege[2]}`},
+          { name: 'First Period', value: `${displayMessege[3]}` },
+          { name: 'First Period', value: `${displayMessege[4]}` },
+          { name: 'First Period', value: `${displayMessege[5]}` },
+          { name: 'First Period', value: `${displayMessege[6]}` },
+          { name: 'First Period', value: `${displayMessege[7]}` },
          
-		 jsonReader("./routine.json", (err,sata ) => {
-			if (err) {
-			  console.log("Error reading file:", err);
-			  return;
-			}
-			
-			sata.state = args[0];
-			fs.writeFileSync("./routine.json", JSON.stringify(sata), err => {
-			  if (err) console.log("Error writing file:", err);
-			});
-
-			let jsonString = fs.readFileSync('./routine.json','utf-8');
-			let data = JSON.parse(jsonString);
-			console.log(`Checking state: ${sata.state} , ${data.state}`)
-
-		
-		  });}
           
-		  routiniser(message,today,args);
+//
+        )
+        .addField('Testing', 'Testing', true)
+        .setImage('https://i.imgur.com/wSTFkRM.png')
+        .setTimestamp()
+        .setFooter('Sending Happy Routines ', './img/logo.png');
+        message.channel.send(Embed);
+      
+
+
+
+        //message.channel.send(displayMessege);
 
 
 
 
 
 
-	},
-		
+
+
+
+
+
+
+
+
+      });
+    }
+  },
 };
 
+const timeInterval = [
+  "10:15 - 11:05",
+  "11:05 - 11:55",
+  "11:55 - 12:45",
+  "12:45 - 01:35",
+  "01:35 - 02:25",
+  "02:25 - 03:15",
+  "03:15 - 04:05",
+  "04:05 - 04:55",
+];
+function routiniser(message, today, args = ["x", "x", "x", "x"]) {
+  today = today.getDay();
+  Routine.find().then((routineDataArr) => {
+    let routine = routineDataArr[0];
 
-function jsonReader(filePath, cb) {
-	fs.readFile(filePath, (err, fileData) => {
-	  if (err) {
-		return cb && cb(err);
-	  }
-	  try {
-		const object = JSON.parse(fileData);
-		return cb && cb(null, object);
-	  } catch (err) {
-		return cb && cb(err);
-	  }
-	});
-  }
-  jsonReader("./routine.json", (err, data) => {
-	if (err) {
-	  console.log(err);
-	  return;
-	}
-	console.log('Reached Inside JSonreader');
-	console.log(data.state); // => "Infinity Loop Drive"
+    let routineToday = [];
+    routine.at.forEach((itemsArr, index) => {
+      if (index == today) {
+        routineToday = itemsArr;
+      }
+    });
+
+    let displayMessege = generateMessegeFromRoutine(routineToday);
+
+    message.channel.send(displayMessege);
+    //for test
+    return displayMessege;
+  });
+}
+
+const generateMessegeFromRoutine = (routineToday) => {
+  let displayMessege = [];
+
+  routineToday.forEach((lecture, index) => {
+    displayMessege = displayMessege.concat(
+      `${timeInterval[index] + " =>  " + lecture}`
+    );
   });
 
-
-
-
-function timestamps(param){
-	const timeInterval = ["10:15 - 11:05","11:05 - 11:55","11:55 - 12:45","12:45 - 01:35", "01:35 - 02:25","02:25 - 03:15","03:15 - 04:05","04:05 - 04:55"]
-	return timeInterval[param];
-}
-
-
-function getDayName(params) {
-    const dayName = ["Sunday","Monday","Tuesday","Wednesay","Thursday","Friday"];
-    
-    return dayName[params];
-}
-
-
-
-function getSubs(param){
-	let subsName = ["Numerical Methods","DS And Algo","Instrumentation","Applied Maths","Electric Machines","Discrete Struc","Microprocessor","Break","No More Classes"];
-	
-	
-	return subsName[param];
-
-}
-
-function routiniser(message,today,args=['x','x','x','x']){
-	console.log(args);
-	console.log(args[0],args[1],args[2],args[3]);
-	
-	message.channel.send(` \`\`\` ${getDayName(today.getDay())}. And You Have Following Classes Today:\n\n|| ${timestamps(0)} || -  ${dynamicRoutine(today,args[1],args[0])[0]}      - ||${getLecVar(today.getDay()).map(getLecName)[0]}||\n|| ${timestamps(1)} || - ${dynamicRoutine(today,args[1],args[0])[1]}    - ||${getLecVar(today.getDay()).map(getLecName)[1]}|\n|| ${timestamps(2)} || - ${dynamicRoutine(today,args[1],args[0])[2]}             - ||${getLecVar(today.getDay()).map(getLecName)[2]}||\n|| ${timestamps(3)} || - ${dynamicRoutine(today,args[1],args[0])[3]} - ||${getLecVar(today.getDay()).map(getLecName)[3]}||\n|| ${timestamps(4)} || - ${dynamicRoutine(today,args[1],args[0])[4]}   - ||${getLecVar(today.getDay()).map(getLecName)[4]}||\n|| ${timestamps(5)} || - ${dynamicRoutine(today,args[1],args[0])[5]}   - ||${getLecVar(today.getDay()).map(getLecName)[5]}||\n|| ${timestamps(6)} || - ${dynamicRoutine(today,args[1],args[0])[6]}   - ||${getLecVar(today.getDay()).map(getLecName)[6]}||\n|| ${timestamps(7)} || - ${dynamicRoutine(today,args[1],args[0])[7]}   - ||${getLecVar(today.getDay()).map(getLecName)[7]}||\n
-		~Routine Under Maintenance~ 
-		 \`\`\``);
-	
-}
-
-function getDayVar(param){
-let sun = [0,0,2,2,7,7,3,0];
-let mon = [6,6,0,7,3,7,3,2];
-let tue = [1,1,5,5,7,7,0,7];
-let wed = [4,4,2,2,7,7,7,7];
-let thu = [4,4,5,7,1,7,7,7];
-let fri = [7,6,6,6,3,7,7,7];
-let sir= [sun,mon,tue,wed,thu,fri];
-return sir[param];
-}
-
-function getLecVar(param){
-let sun = [0,0,5,5,9,9,0,3];
-let mon = [10,10,2,9,1,9,7,5];
-let tue = [4,4,6,6,9,9,11,9];
-let wed = [8,8,5,5,9,4,9,9];
-let thu = [8,8,7,9,4,9,9,9];
-let fri = [9,10,10,9,0,9,9];
-let sir= [sun,mon,tue,wed,thu,fri];
-return sir[param];
-}
-
-function getLecName(params){
-	const lecName = ["SG","SKM","BDM","JRS","BS","MB","JG","SPP","KBT","XX","DSB","GG"]
-	return  lecName[params];
-}
-
-function dynamicRoutine(today,param,agg){
-	
-	let arr = [getDayVar(today.getDay()).map(getSubs)[0],getDayVar(today.getDay()).map(getSubs)[1],getDayVar(today.getDay()).map(getSubs)[2],getDayVar(today.getDay()).map(getSubs)[3],getDayVar(today.getDay()).map(getSubs)[4],getDayVar(today.getDay()).map(getSubs)[5],getDayVar(today.getDay()).map(getSubs)[6],getDayVar(today.getDay()).map(getSubs)[7]];
-	console.log(data.state);
-	if(agg === 'not cancel' && param === 'x'){
-	
-		console.log(param);
-		console.log('No cancel loop 1 exe');
-		return arr;
-		
-	}
-	if(agg === 'not cancel')
-	{
-		console.log(param);
-		console.log('No cancel loop 2 exe');
-		return arr;
-	}
-
-	else if(agg === 'cancel'){
-		console.log('cancel loop 3 exe');
-		arr.splice(param-1, 1, "Class Cancelled");
-		return arr;
-	}
-	
-	else
-	{
-		console.log('else loop 4 exe');
-	return arr;
-	}
-
-
-}
+  return displayMessege;
+};
