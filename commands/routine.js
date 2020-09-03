@@ -33,13 +33,13 @@ module.exports = {
         routineData.save();
 
 
-        const Embed = new Discord.MessageEmbed()
+    /*    const Embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
         .setURL('https://discord.js.org/')
-        .setAuthor('Your Class Feed Today', './img/logo.png', 'https://discord.js.org')
+        .setAuthor('Your Class Feed Today', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
         .setDescription(`Hello ${message.author}, You have my service :receipt`)
-        .setThumbnail('./img/logo.png')
+        .setThumbnail('https://i.imgur.com/wSTFkRM.png')
         .addFields(
           { name: 'First Period', value: `${displayMessege[0]}` },
           { name: 'Second Period', value: `${displayMessege[1]}`},
@@ -57,10 +57,9 @@ module.exports = {
         .setImage('https://i.imgur.com/wSTFkRM.png')
         .setTimestamp()
         .setFooter('Sending Happy Routines ', './img/logo.png');
-         message.channel.send(Embed);
-      
-
-        //message.channel.send(displayMessege)
+         message.channel.send(Embed);      
+*/
+        message.channel.send(displayMessege)
 
 
       });
