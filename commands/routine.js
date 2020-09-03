@@ -116,6 +116,8 @@ function routiniser(message, today, args = ["x", "x", "x", "x"]) {
       { name: 'Eighth Period', value: `${displayMessege[7]}` },       
 //
     )
+    .setTimestamp()
+        .setFooter('Sending Happy Routines ');
     message.channel.send(Embed); 
     //for test
     return displayMessege;
