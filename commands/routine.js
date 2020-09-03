@@ -15,22 +15,23 @@ module.exports = {
   },
   execute2(message, args) {
     let today = new Date().getDay();
+
     let classIndexToCancel = args[1];
+
     message.channel.send(`Database Routine Updates are Only available to CRs `);
     if (args[0] === "cancel" || args[0] === "not cancel") {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
-
         routineData.at[today].forEach((lecture, index) => {
-          if (index == classIndexToCancel) {
-            routineData.at[today][classIndexToCancel] = "Class Cancelled";
+          if (index == classIndexToCancel - 1) {
+            routineData.at[today][classIndexToCancel - 1] = "Class Cancelled";
           }
         });
 
         let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
         routineData.markModified("at");
         routineData.save();
-        message.channel.send(displayMessege);
+        message.channel.send(` \`\`\`${displaymessage}\`\`\` `);
       });
     }
   },
@@ -60,7 +61,7 @@ function routiniser(message, today, args = ["x", "x", "x", "x"]) {
 
     let displayMessege = generateMessegeFromRoutine(routineToday);
 
-    message.channel.send(displayMessege);
+    message.channel.send(` \`\`\`${displaymessage}\`\`\` `);
     //for test
     return displayMessege;
   });
@@ -71,7 +72,7 @@ const generateMessegeFromRoutine = (routineToday) => {
 
   routineToday.forEach((lecture, index) => {
     displayMessege = displayMessege.concat(
-      `${timeInterval[index] + " =>  " + lecture}+'\n'`
+      ` ${timeInterval[index] + " =>  " + lecture + "   "}  ' \n' `
     );
   });
 

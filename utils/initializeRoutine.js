@@ -73,7 +73,6 @@ exports.initializeRoutine = () => {
 
   Routine.find().then((data) => {
     if (data.length == 0) {
-      console.log("routine", routine);
       let routineData = new Routine({
         at: routine,
       });
