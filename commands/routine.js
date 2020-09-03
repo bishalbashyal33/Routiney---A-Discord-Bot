@@ -17,7 +17,17 @@ module.exports = {
   execute2(message, args) {
     let today = new Date().getDay();
     let classIndexToCancel = args[1];
+
+
+
+
     message.channel.send(`Database Routine Updates are Only available to CRs `);
+
+
+
+
+
+
     if (args[0] === "cancel" || args[0] === "not cancel") {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
@@ -38,25 +48,21 @@ module.exports = {
         .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
         .setURL('https://discord.js.org/')
         .setAuthor('Your Class Feed Today', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-        .setDescription(`Hello ${message.author}, You have my service :receipt`)
-        .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+        .setDescription(`Hello ${message.author}, You have my service :receipt:`)
         .addFields(
           { name: 'First Period', value: `${displayMessege[0]}` },
           { name: 'Second Period', value: `${displayMessege[1]}`},
-          { name: 'Second Period', value: `${displayMessege[2]}`},
-          { name: 'First Period', value: `${displayMessege[3]}` },
-          { name: 'First Period', value: `${displayMessege[4]}` },
-          { name: 'First Period', value: `${displayMessege[5]}` },
-          { name: 'First Period', value: `${displayMessege[6]}` },
-          { name: 'First Period', value: `${displayMessege[7]}` },
-         
-          
+          { name: 'Third Period', value: `${displayMessege[2]}`},
+          { name: 'Fourth Period', value: `${displayMessege[3]}` },
+          { name: 'Fifth Period', value: `${displayMessege[4]}` },
+          { name: 'Sixth Period', value: `${displayMessege[5]}` },
+          { name: 'Seventh Period', value: `${displayMessege[6]}` },
+          { name: 'Eighth Period', value: `${displayMessege[7]}` },       
 //
         )
-        .addField('Testing', 'Testing', true)
-        .setImage('https://i.imgur.com/wSTFkRM.png')
+        
         .setTimestamp()
-        .setFooter('Sending Happy Routines ', 'https://i.imgur.com/wSTFkRM.png');
+        .setFooter('Sending Happy Routines ');
          message.channel.send(Embed);      
 
       //  message.channel.send(displayMessege)
@@ -91,7 +97,26 @@ function routiniser(message, today, args = ["x", "x", "x", "x"]) {
 
     let displayMessege = generateMessegeFromRoutine(routineToday);
 
-    message.channel.send(displayMessege);
+///This is redundant tara paxi improve garxu
+
+    const Embed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
+    .setURL('https://discord.js.org/')
+    .setAuthor('Your Class Feed Today', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+    .setDescription(`Hello ${message.author}, You have my service :receipt:`)
+    .addFields(
+      { name: 'First Period', value: `${displayMessege[0]}` },
+      { name: 'Second Period', value: `${displayMessege[1]}`},
+      { name: 'Third Period', value: `${displayMessege[2]}`},
+      { name: 'Fourth Period', value: `${displayMessege[3]}` },
+      { name: 'Fifth Period', value: `${displayMessege[4]}` },
+      { name: 'Sixth Period', value: `${displayMessege[5]}` },
+      { name: 'Seventh Period', value: `${displayMessege[6]}` },
+      { name: 'Eighth Period', value: `${displayMessege[7]}` },       
+//
+    )
+    message.channel.send(Embed); 
     //for test
     return displayMessege;
   });
