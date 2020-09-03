@@ -59,7 +59,7 @@ module.exports = {
         .setFooter('Sending Happy Routines ', 'https://i.imgur.com/wSTFkRM.png');
          message.channel.send(Embed);      
 
-        message.channel.send(displayMessege)
+      //  message.channel.send(displayMessege)
 
 
       });
