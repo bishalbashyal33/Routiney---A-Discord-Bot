@@ -15,14 +15,14 @@ module.exports = {
     };
     const aayushUrl =
       "mongodb+srv://root:root123@cluster0-vy6ab.mongodb.net/RoutineyDiscord";
-    // mongoose.connect(aayushUrl, dbOptions).then(() => {
-    //   console.log("conneted to mongoose sucessfully");
-    //   initializeRoutine();
-    // });
-    mongoose.connect(
-      `mongodb+srv://admin:${process.env.pass}@cluster0.sac2a.mongodb.net/<dbname>?retryWrites=true&w=majority`,
-      dbOptions
-    );
+    mongoose.connect(aayushUrl, dbOptions).then(() => {
+      console.log("conneted to mongoose sucessfully");
+      initializeRoutine();
+    });
+    // mongoose.connect(
+    //   `mongodb+srv://admin:${process.env.pass}@cluster0.sac2a.mongodb.net/<dbname>?retryWrites=true&w=majority`,
+    //   dbOptions
+    // );
     mongoose.set("useFindAndModify", false);
     mongoose.Promise = global.Promise;
     //
