@@ -33,7 +33,7 @@ module.exports = {
         routineData.save();
 
 
-    /*    const Embed = new Discord.MessageEmbed()
+    /  const Embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('BamBoozling Routiney :smiling_face_with_3_hearts:')
         .setURL('https://discord.js.org/')
@@ -56,9 +56,9 @@ module.exports = {
         .addField('Testing', 'Testing', true)
         .setImage('https://i.imgur.com/wSTFkRM.png')
         .setTimestamp()
-        .setFooter('Sending Happy Routines ', './img/logo.png');
+        .setFooter('Sending Happy Routines ', 'https://i.imgur.com/wSTFkRM.png');
          message.channel.send(Embed);      
-*/
+
         message.channel.send(displayMessege)
 
 
