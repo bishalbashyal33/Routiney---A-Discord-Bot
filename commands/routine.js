@@ -60,21 +60,7 @@ module.exports = {
         message.channel.send(Embed);
       
 
-
-
-        //message.channel.send(displayMessege);
-
-
-
-
-
-
-
-
-
-
-
-
+        //message.channel.send(displayMessege)
 
 
       });
@@ -116,7 +102,7 @@ const generateMessegeFromRoutine = (routineToday) => {
   let displayMessege = [];
 
   routineToday.forEach((lecture, index) => {
-    displayMessege = displayMessege.concat(
+    displayMessege.push(
       `${timeInterval[index] + " =>  " + lecture}`
     );
   });
