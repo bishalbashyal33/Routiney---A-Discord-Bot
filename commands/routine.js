@@ -28,7 +28,7 @@ module.exports = {
 			  console.log("Error reading file:", err);
 			  return;
 			}
-			// increase customer order count by 1
+			
 			sata.state = args[0];
 			fs.writeFileSync("./routine.json", JSON.stringify(sata), err => {
 			  if (err) console.log("Error writing file:", err);
