@@ -3,6 +3,8 @@
 const mongoose = require("mongoose");
 const Routine = require("../models/routine");
 
+exports.initialRroutine = [[]];
+
 function getLecName(params) {
   const lecName = [
     "SG",
@@ -60,7 +62,6 @@ function getLecVar(param) {
 }
 
 exports.initializeRoutine = () => {
-  let routine = [[]];
   for (i = 0; i < 6; i++) {
     let dayRoutine = [];
     for (j = 0; j <= 7; j++) {
