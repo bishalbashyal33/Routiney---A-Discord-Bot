@@ -2,7 +2,6 @@
 
 const mongoose = require("mongoose");
 const Routine = require("../models/routine");
-const routine = require("../models/routine");
 
 function getLecName(params) {
   const lecName = [
@@ -61,7 +60,7 @@ function getLecVar(param) {
 }
 
 exports.getInitialRoutine = () => {
-  let routin = [[]];
+  let routine = [[]];
   for (i = 0; i < 6; i++) {
     let dayRoutine = [];
     for (j = 0; j <= 7; j++) {
@@ -71,11 +70,13 @@ exports.getInitialRoutine = () => {
     }
     routine[i] = dayRoutine;
   }
+  console.log("routine in get initial routine", routine);
   return routine;
 };
 
 exports.initializeRoutine = () => {
   let routine = this.getInitialRoutine();
+  console.log("routine in initialize routine", routine);
   Routine.find().then((data) => {
     if (data.length == 0) {
       let routineData = new Routine({
