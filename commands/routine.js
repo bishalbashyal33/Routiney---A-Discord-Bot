@@ -2,11 +2,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const Routine = require("../models/routine");
-const {
-  getInitialRoutine,
-  initializeRoutine,
-  getEmbed,
-} = require("../utils/initializeRoutine");
+const { getInitialRoutine } = require("../utils/initializeRoutine");
 
 const { getEmbed } = require("../utils/embed");
 
@@ -36,7 +32,6 @@ module.exports = {
         let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
         routineData.markModified("at");
         routineData.save();
-
         getEmbed(displayMessege, message);
 
         //message.channel.send(displayMessege)
