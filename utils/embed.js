@@ -7,26 +7,23 @@ exports.getEmbed = (displayMessege, message) => {
     .setURL("https://discord.js.org/")
     .setAuthor(
       "Your Class Feed Today",
-      "./img/logo.png",
+      "https://i.imgur.com/wSTFkRM.png",
       "https://discord.js.org"
     )
-    .setDescription(`Hello ${message.author}, You have my service :receipt`)
-    .setThumbnail("./img/logo.png")
+    .setDescription(`Hello ${message.author}, You have my service :receipt:`)
     .addFields(
       { name: "First Period", value: `${displayMessege[0]}` },
       { name: "Second Period", value: `${displayMessege[1]}` },
-      { name: "Second Period", value: `${displayMessege[2]}` },
-      { name: "First Period", value: `${displayMessege[3]}` },
-      { name: "First Period", value: `${displayMessege[4]}` },
-      { name: "First Period", value: `${displayMessege[5]}` },
-      { name: "First Period", value: `${displayMessege[6]}` },
-      { name: "First Period", value: `${displayMessege[7]}` }
-
+      { name: "Third Period", value: `${displayMessege[2]}` },
+      { name: "Fourth Period", value: `${displayMessege[3]}` },
+      { name: "Fifth Period", value: `${displayMessege[4]}` },
+      { name: "Sixth Period", value: `${displayMessege[5]}` },
+      { name: "Seventh Period", value: `${displayMessege[6]}` },
+      { name: "Eighth Period", value: `${displayMessege[7]}` }
       //
     )
-    .addField("Testing", "Testing", true)
-    .setImage("https://i.imgur.com/wSTFkRM.png")
+
     .setTimestamp()
-    .setFooter("Sending Happy Routines ", "./img/logo.png");
+    .setFooter("Sending Happy Routines ");
   message.channel.send(Embed);
 };
