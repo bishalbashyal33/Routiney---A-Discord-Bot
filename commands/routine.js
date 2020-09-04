@@ -37,7 +37,7 @@ module.exports = {
         //message.channel.send(displayMessege)
       });
     }
-    if (args[0] == "undo") {
+    if (args[0] === "undo") {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
 
