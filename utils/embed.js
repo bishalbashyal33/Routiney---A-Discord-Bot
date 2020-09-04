@@ -1,4 +1,4 @@
-exports.getEmbed = (displayMessege) => {
+exports.getEmbed = (displayMessege, message) => {
   const Embed = new Discord.MessageEmbed()
     .setColor("#0099ff")
     .setTitle("BamBoozling Routiney :smiling_face_with_3_hearts:")

@@ -37,7 +37,7 @@ module.exports = {
         routineData.markModified("at");
         routineData.save();
 
-        getEmbed(displayMessege);
+        getEmbed(displayMessege, message);
 
         //message.channel.send(displayMessege)
       });
@@ -69,7 +69,7 @@ module.exports = {
               routineData.at[today]
             );
             routineData.markModified("at");
-            getEmbed(displayMessege);
+            getEmbed(displayMessege, message);
             routineData.save();
           });
           break;
@@ -84,7 +84,7 @@ module.exports = {
               routineData.at[today]
             );
             routineData.markModified("at");
-            getEmbed(displayMessege);
+            getEmbed(displayMessege, message);
             routineData.save();
           });
           break;
