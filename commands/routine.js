@@ -16,13 +16,12 @@ module.exports = {
   },
   update(message, args) {
     let today = new Date().getDay();
-    let classIndexToCancel = args[1];
+    let classIndexToCancel = args[1] - 1;
 
     message.channel.send(`Database Routine Updates are Only available to CRs `);
     if (args[0] === "cancel") {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
-
         routineData.at[today].forEach((lecture, index) => {
           if (index == classIndexToCancel) {
             routineData.at[today][classIndexToCancel] = "Class Cancelled";

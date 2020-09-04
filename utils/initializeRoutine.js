@@ -54,7 +54,7 @@ function getLecVar(param) {
   let tue = [4, 4, 6, 6, 9, 9, 11, 9];
   let wed = [8, 8, 5, 5, 9, 4, 9, 9];
   let thu = [8, 8, 7, 9, 4, 9, 9, 9];
-  let fri = [9, 10, 10, 9, 0, 9, 9,9];
+  let fri = [9, 10, 10, 9, 0, 9, 9, 9];
   let sir = [sun, mon, tue, wed, thu, fri];
   return sir[param];
 }
