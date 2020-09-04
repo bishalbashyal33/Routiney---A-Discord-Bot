@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 exports.getEmbed = (displayMessege, message) => {
   const Embed = new Discord.MessageEmbed()
     .setColor("#0099ff")
