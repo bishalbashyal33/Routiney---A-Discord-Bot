@@ -37,16 +37,6 @@ module.exports = {
       });
     }
     if (args[0] === "undo") {
-      Routine.find().then((routineDataArr) => {
-        let routineData = routineDataArr[0];
-
-        routineData.at = getInitialRoutine();
-
-        let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
-        routineData.markModified("at");
-        getEmbed(displayMessege, message);
-        routineData.save();
-      });
       let flag = arg[1];
       switch (flag) {
         case "-t":
