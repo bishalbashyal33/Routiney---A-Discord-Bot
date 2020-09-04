@@ -29,7 +29,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content.startsWith("!updateroutine")) {
-    client.commands.get("routine").execute2(message, args);
+    client.commands.get("routine").update(message, args);
   }
 
   if (!client.commands.has(command)) return;
