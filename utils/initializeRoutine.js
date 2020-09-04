@@ -60,6 +60,7 @@ function getLecVar(param) {
 }
 
 exports.getInitialRoutine = () => {
+  //returns initial routine based on  initial data
   let routine = [[]];
   for (i = 0; i < 6; i++) {
     let dayRoutine = [];
@@ -76,7 +77,6 @@ exports.getInitialRoutine = () => {
 
 exports.initializeRoutine = () => {
   let routine = this.getInitialRoutine();
-  console.log("routine in initialize routine", routine);
   Routine.find().then((data) => {
     if (data.length == 0) {
       let routineData = new Routine({
