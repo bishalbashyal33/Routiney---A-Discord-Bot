@@ -18,7 +18,7 @@ module.exports = {
     let today = new Date().getDay();
     let classIndexToCancel = args[1] - 1;
 
-    message.channel.send(`Database Routine Updates are Only available to CRs `);
+    // message.channel.send(`Database Routine Updates are Only available to CRs `);
     if (args[0] === "cancel") {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
@@ -44,14 +44,14 @@ module.exports = {
             let routineData = routineDataArr[0];
 
             //initial routine is array which stores initial routine
-            routineData.at[today] = getInitialRoutine[today];
+            routineData.at[today] = getInitialRoutine()[today];
 
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
             );
             routineData.markModified("at");
-            getEmbed(displayMessege, message);
             routineData.save();
+            getEmbed(displayMessege, message);
           });
           break;
         case "-a":
@@ -73,14 +73,13 @@ module.exports = {
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
-            routineData.at[indexToUndo] = getInitialRoutine[indexToUndo];
-
+            routineData.at[indexToUndo] = getInitialRoutine()[indexToUndo];
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
             );
             routineData.markModified("at");
-            getEmbed(displayMessege, message);
             routineData.save();
+            getEmbed(displayMessege, message);
           });
           break;
       }

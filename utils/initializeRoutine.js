@@ -71,7 +71,6 @@ exports.getInitialRoutine = () => {
     }
     routine[i] = dayRoutine;
   }
-  console.log("routine in get initial routine", routine);
   return routine;
 };
 
