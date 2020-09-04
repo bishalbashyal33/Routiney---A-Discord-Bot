@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const Routine = require("../models/routine");
 const {
-  initialRoutine,
+  getInitialRoutine,
   initializeRoutine,
   getEmbed,
 } = require("../utils/initializeRoutine");
@@ -48,7 +48,7 @@ module.exports = {
             let routineData = routineDataArr[0];
 
             //initial routine is array which stores initial routine
-            routineData.at[today] = initialRoutine[today];
+            routineData.at[today] = getInitialRoutine[today];
 
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
@@ -61,7 +61,7 @@ module.exports = {
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
-            routineData.at[today] = initialRoutine;
+            routineData.at[today] = getInitialRoutine();
 
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
@@ -76,7 +76,7 @@ module.exports = {
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
-            routineData.at[indexToUndo] = initialRoutine[indexToUndo];
+            routineData.at[indexToUndo] = getInitialRoutine[indexToUndo];
 
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
