@@ -31,6 +31,7 @@ module.exports = {
         let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
         routineData.markModified("at");
         routineData.save();
+        console.log("saved");
         getEmbed(displayMessege, message);
 
         //message.channel.send(displayMessege)
@@ -55,17 +56,18 @@ module.exports = {
           });
           break;
         case "-a":
+          console.log("in all");
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
-            routineData.at[today] = getInitialRoutine();
+            routineData.at = getInitialRoutine();
 
             let displayMessege = generateMessegeFromRoutine(
               routineData.at[today]
             );
             routineData.markModified("at");
-            getEmbed(displayMessege, message);
             routineData.save();
+            getEmbed(displayMessege, message);
           });
           break;
         case "-d":

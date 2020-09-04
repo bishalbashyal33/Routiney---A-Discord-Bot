@@ -19,6 +19,8 @@ exports.initializeRoutineTest = () => {
 
 exports.undoTest = () => {
   console.log("und0 test begin-----------------------");
-  routine.update("test", ["undo", "-d", "5"]);
+  routine.update("test", ["undo", "-t"]);
+  routine.update("test", ["cancel", "3"]);
+  routine.update("test", ["undo", "-a"]);
   console.log("undo test end");
 };
