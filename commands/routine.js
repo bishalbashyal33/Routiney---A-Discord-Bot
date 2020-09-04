@@ -37,7 +37,7 @@ module.exports = {
       });
     }
     if (args[0] === "undo") {
-      let flag = arg[1];
+      let flag = args[1];
       switch (flag) {
         case "-t":
           Routine.find().then((routineDataArr) => {
