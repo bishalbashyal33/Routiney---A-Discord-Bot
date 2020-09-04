@@ -47,54 +47,53 @@ module.exports = {
         getEmbed(displayMessege, message);
         routineData.save();
       });
-      //   let flag = arg[1];
-      //   switch (flag) {
-      //     case "-t":
-      //       Routine.find().then((routineDataArr) => {
-      //         let routineData = routineDataArr[0];
+      let flag = arg[1];
+      switch (flag) {
+        case "-t":
+          Routine.find().then((routineDataArr) => {
+            let routineData = routineDataArr[0];
 
-      //         //initial routine is array which stores initial routine
-      //         routineData.at[today] = getInitialRoutine[today];
+            //initial routine is array which stores initial routine
+            routineData.at[today] = getInitialRoutine[today];
 
-      //         let displayMessege = generateMessegeFromRoutine(
-      //           routineData.at[today]
-      //         );
-      //         routineData.markModified("at");
-      //         getEmbed(displayMessege, message);
-      //         routineData.save();
-      //       });
-      //       break;
-      //     case "-a":
-      //       Routine.find().then((routineDataArr) => {
-      //         let routineData = routineDataArr[0];
+            let displayMessege = generateMessegeFromRoutine(
+              routineData.at[today]
+            );
+            routineData.markModified("at");
+            getEmbed(displayMessege, message);
+            routineData.save();
+          });
+          break;
+        case "-a":
+          Routine.find().then((routineDataArr) => {
+            let routineData = routineDataArr[0];
 
-      //         routineData.at[today] = getInitialRoutine();
+            routineData.at[today] = getInitialRoutine();
 
-      //         let displayMessege = generateMessegeFromRoutine(
-      //           routineData.at[today]
-      //         );
-      //         routineData.markModified("at");
-      //         getEmbed(displayMessege, message);
-      //         routineData.save();
-      //       });
-      //       break;
-      //     case "-d":
-      //       let indexToUndo = args[2];
-      //       Routine.find().then((routineDataArr) => {
-      //         let routineData = routineDataArr[0];
+            let displayMessege = generateMessegeFromRoutine(
+              routineData.at[today]
+            );
+            routineData.markModified("at");
+            getEmbed(displayMessege, message);
+            routineData.save();
+          });
+          break;
+        case "-d":
+          let indexToUndo = args[2];
+          Routine.find().then((routineDataArr) => {
+            let routineData = routineDataArr[0];
 
-      //         routineData.at[indexToUndo] = getInitialRoutine[indexToUndo];
+            routineData.at[indexToUndo] = getInitialRoutine[indexToUndo];
 
-      //         let displayMessege = generateMessegeFromRoutine(
-      //           routineData.at[today]
-      //         );
-      //         routineData.markModified("at");
-      //         getEmbed(displayMessege, message);
-      //         routineData.save();
-      //       });
-      //       break;
-      //   }
-      // }
+            let displayMessege = generateMessegeFromRoutine(
+              routineData.at[today]
+            );
+            routineData.markModified("at");
+            getEmbed(displayMessege, message);
+            routineData.save();
+          });
+          break;
+      }
     }
   },
 };
