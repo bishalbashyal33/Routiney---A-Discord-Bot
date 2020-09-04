@@ -8,6 +8,8 @@ const {
   getEmbed,
 } = require("../utils/initializeRoutine");
 
+const { getEmbed } = require("../utils/embed");
+
 /* eslint-disable no-mixed-spaces-and-tabs */
 module.exports = {
   name: "routine",
