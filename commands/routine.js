@@ -44,7 +44,6 @@ module.exports = {
       let flag = arg[1];
       switch (flag) {
         case "-t":
-          let today = new Date.now().getDay();
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
@@ -58,7 +57,6 @@ module.exports = {
           });
           break;
         case "-a":
-          let today = new Date.now().getDay();
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
