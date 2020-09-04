@@ -85,5 +85,3 @@ try {
 } */
 });
 client.mongoose.init();
-const test = require("./tests/routine");
-test.initializeRoutineTest();
