@@ -47,6 +47,7 @@ module.exports = {
           Routine.find().then((routineDataArr) => {
             let routineData = routineDataArr[0];
 
+            //initial routine is array which stores initial routine
             routineData.at[today] = initialRoutine[today];
 
             let displayMessege = generateMessegeFromRoutine(
