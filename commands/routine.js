@@ -41,7 +41,7 @@ module.exports = {
       Routine.find().then((routineDataArr) => {
         let routineData = routineDataArr[0];
 
-        routineData.at[today] = getInitialRoutine();
+        routineData.at = getInitialRoutine();
 
         let displayMessege = generateMessegeFromRoutine(routineData.at[today]);
         routineData.markModified("at");
